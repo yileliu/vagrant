@@ -19,6 +19,7 @@ Vagrant.configure(VAGANTFILE_API_VERSION) do |config|
 
   config.vm.provision "shell", path: "provision.sh"
 
+  config.vm.network "forwarded_port", guest: 80, host: 8100, id: "nginx"
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
