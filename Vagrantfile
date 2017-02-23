@@ -20,6 +20,10 @@ Vagrant.configure(VAGANTFILE_API_VERSION) do |config|
   config.vm.provision "shell", path: "provision.sh"
 
   config.vm.network "forwarded_port", guest: 80, host: 8100, id: "nginx", auto_correct: true
+
+  config.vm.synced_folder "./", "/vagrant", disabled: true
+  config.vm.synced_folder "www", "/vagrant/www"
+  config.vm.synced_folder "sites-enabled", "/vagrant/sites-enabled"
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
@@ -43,7 +47,6 @@ Vagrant.configure(VAGANTFILE_API_VERSION) do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  # config.vm.synced_folder "../data", "/vagrant_data"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
